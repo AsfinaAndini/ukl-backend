@@ -8,23 +8,24 @@ exports.order = async (req, res) => {
 
     // Create the order list entry
     const newOrderList = await orderModel.create({
-      name_customer: customer_name,
+      customer_name: customer_name,
       table_number: table_number,
       order_date: order_date,
     });
 
-    for (const detail of order_detail) {
+    // Create order details
+    await Promise.all(order_detail.map(async (order) => {
       await detailModel.create({
         id_order: newOrderList.id,
-        id_food: detail.food_id,
-        quantity: detail.quantity,
-        price: detail.price,
+        id_food: order.food_id,
+        quantity: order.quantity,
+        price: order.price,
       });
-    }
+    }));
 
     res.status(201).json({ message: "Order created successfully" });
   } catch (error) {
-    console.error("Error creating order:", error);
+    console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
