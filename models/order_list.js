@@ -6,12 +6,12 @@ module.exports = (sequelize, DataTypes) => {
   class order_list extends Model {
     static associate(models) {
       this.hasMany(models.order_detail, {
-        foreignKey: "id_order", as: "list_detail"
+        foreignKey: "id", as: "order_detail"
       })
     }
   }
   order_list.init({
-    name_customer: DataTypes.STRING,
+    customer_name: DataTypes.STRING,
     table_number: DataTypes.STRING,
     order_date: DataTypes.DATE
   }, {

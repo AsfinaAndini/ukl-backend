@@ -16,7 +16,7 @@ const authVerify = async (req, res, next) => {
     let token = header.split(" ")[1]; //ambil token dari bearer token, ambil elemen kedua
 
     try {
-      const decodedToken = jsonwebtoken.verify(token, SECRET_KEY);
+      jsonwebtoken.verify(token, SECRET_KEY);
     } catch (error) {
       if (error instanceof jsonwebtoken.TokenExpiredError) {
         //kalo tokennya kadaluwarsa

@@ -1,4 +1,4 @@
-const food = require("../models/index").food;
+const food = require("../models/index").foods;
 const path = require(`path`);
 const Op = require(`sequelize`).Op;
 const fs = require(`fs`);
