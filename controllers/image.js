@@ -7,15 +7,15 @@ const storage = multer.diskStorage({
     },
 
     filename: (req, file, cb) => {
-        cb(null, `img-${Date.now()}${path.extname(file.originalname)}`) //name file nya
+        cb(null, `img-${Date.now()}${path.extname(file.originalname)}`) //name file
     }
 })
 
 const upload = multer({
     storage: storage, //storage nya dimana
     fileFilter: (req, file, cb) => {
-        const acceptedType = [`image/jpg`, `image/jpeg`, `image/png`] //tipenya apa aja
-        if (!acceptedType.includes(file.mimetype)) { //kalo ga sesuai tipe 
+        const acceptedType = [`image/jpg`, `image/jpeg`, `image/png`] //tipenya image yang di input
+        if (!acceptedType.includes(file.mimetype)) { //ga sesuai tipe 
             cb(null, false) 
             return cb(`Invalid file type (${file.mimetype})`)
 
