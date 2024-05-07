@@ -40,6 +40,22 @@ exports.orderHistory = async (req, res) => {
         },
       ],
     });
+
+    // Menghitung total order untuk setiap pesanan
+    data = data.map(order => {
+      const totalOrder = order.order_detail.reduce((total, item) => {
+        return total + (item.price * item.quantity);
+      }, 0);
+      return {
+        id: order.id,
+        customer_name: order.customer_name,
+        table_number: order.table_number,
+        order_date: order.order_date,
+        order_detail: order.order_detail,
+        total_order: totalOrder,
+      };
+    });
+
     return res.status(200).json({
       status: true,
       data: data,
