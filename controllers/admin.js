@@ -5,7 +5,7 @@ const SECRET_KEY = "restaurantshop";
 
 exports.login = async (req, res) => {
   try {
-    //masukin email dan password si admin
+    //masukin email dan password admin
     const data = {
       email: req.body.email,
       password: md5(req.body.password),
@@ -22,7 +22,7 @@ exports.login = async (req, res) => {
       name: cariAdmin.name,
       email: cariAdmin.email,
     };
-    //dibikin jadi token
+    //buat jadi token
     let token = jsonwebtoken.sign(tokenPayLoad, SECRET_KEY);
     return res.status(200).json({
       status: true,
