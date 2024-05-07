@@ -28,9 +28,6 @@ exports.login = async (req, res) => {
       status: true,
       message: "You are logged in",
       data: {
-        id_admin: cariAdmin.id,
-        name: cariAdmin.name,
-        email: cariAdmin.email,
         token: token,
       },
     });
