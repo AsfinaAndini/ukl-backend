@@ -6,7 +6,7 @@ exports.order = async (req, res) => {
     // Extract req data
     const { customer_name, table_number, order_date, order_detail } = req.body;
 
-    // Create the order list entry
+    // membuat data baru
     const newOrderList = await orderModel.create({
       customer_name: customer_name,
       table_number: table_number,
